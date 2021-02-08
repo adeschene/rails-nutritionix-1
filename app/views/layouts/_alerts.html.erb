@@ -1,5 +1,6 @@
-<%# Styles alert with materialize and make it red to signify an error %>
-<div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
-  <%= alert %>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<%# Styles alert with materialize and make it red to signify an error (source: https://codepen.io/j_holtslander/pen/MzNPbP) %>
+<div class="alert card red lighten-4 red-text text-darken-4">
+  <div class="card-content">
+    <p><i class="material-icons">report</i><%= alert %></p>
+  </div>
 </div>

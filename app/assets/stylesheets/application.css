@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+/* CSS for styling alerts/notices
+(source: https://codepen.io/j_holtslander/pen/MzNPbP) */
+.alert .card-content .material-icons {
+  font-size: 1.5em;
+  position: relative;
+  top: 5px;
+  margin-right: 0.5em;
+}
