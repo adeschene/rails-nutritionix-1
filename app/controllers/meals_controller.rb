@@ -19,7 +19,7 @@ class MealsController < ApplicationController
     @meal = Meal.new(meal_params)
 
     if @meal.save
-      redirect_to @meal, notice: "Meal was successfully created."
+      redirect_to @meal, notice: "Meal successfully created."
     else
       redirect_to @meal, alert: "Error creating meal..."
     end

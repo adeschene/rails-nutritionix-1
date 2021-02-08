@@ -19,6 +19,15 @@
 .alert .card-content .material-icons {
   font-size: 1.5em;
   position: relative;
-  top: 5px;
+  top: 1px;
   margin-right: 0.5em;
+}
+.alert .card-content p {
+  display: flex;
+  align-items: center;
+}
+.alert {
+  display: flex;
+  align-items: center;
+  height: 3em;
 }
