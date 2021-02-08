@@ -18,7 +18,19 @@
   </head>
 
   <body>
-    <%= yield %>
+    <!-- Render header partial above all pages -->
+    <%= render 'layouts/header' %>
+    <!-- Put contents in a materialize container -->
+    <div class="container">
+      <!-- If any notices or alerts are sent, render them with corresponding partial -->
+      <% if notice %>
+        <%= render 'layouts/notices' %>
+      <% end %>
+      <% if alert %>
+        <%= render 'layouts/alerts' %>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 
   <!-- Materialize JavaScript -->
