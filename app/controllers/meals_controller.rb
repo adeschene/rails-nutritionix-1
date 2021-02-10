@@ -1,50 +1,34 @@
 class MealsController < ApplicationController
-  before_action :set_meal, only: %i[ show edit update destroy ]
-
   def index
     @meals = Meal.all
-  end
-
-  def show
-  end
-
-  def new
-    @meal = Meal.new
-  end
-
-  def edit
   end
 
   def create
     @meal = Meal.new(meal_params)
 
-    if @meal.save
-      redirect_to @meal, notice: "Meal successfully created."
-    else
-      redirect_to @meal, alert: "Error creating meal..."
-    end
-  end
+    hash = NutritionixService.new.get_meal_by_name(@meal.name)
 
-  def update
-    if @meal.update(meal_params)
-      redirect_to @meal, notice: "Meal successfully updated."
+    @meal.name = hash[:food_name]
+    @meal.thumbnail = hash[:thumbnail]
+    @meal.quantity = hash[:quantity]
+    @meal.units = hash[:units]
+    @meal.calories = hash[:calories]
+
+    if @meal.save
+      redirect_to meals_path, notice: "Meal successfully created."
     else
-      flash.now[:alert] = "Error updating meal..."
-      render "edit"
+      redirect_to meals_path, alert: "Error creating meal..."
     end
   end
 
   def destroy
+    @meal = Meal.find(params[:id])
     @meal.destroy
 
     redirect_to meals_path, notice: "Meal successfully destroyed."
   end
 
   private
-    def set_meal
-      @meal = Meal.find(params[:id])
-    end
-
     def meal_params
       params.require(:meal).permit(:name, :calories)
     end

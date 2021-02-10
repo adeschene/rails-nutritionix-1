@@ -1,3 +1,3 @@
 class Meal < ApplicationRecord
-  validates :name, :calories, presence: true
+  validates :name, presence: true
 end
