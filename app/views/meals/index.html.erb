@@ -1,31 +1,23 @@
-<h2>Meals</h2>
+<h2 class="center-align text-bold meals-header">Meals</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th>Photo</th>
-      <th>Name</th>
-      <th>Amount</th>
-      <th>Calories</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @meals.each do |meal| %>
-      <tr>
-        <td><img src="<%= meal.thumbnail %>"> </td>
-        <td><%= meal.name %></td>
-        <td><%= meal.quantity %> <%= meal.units %></td>
-        <td><%= meal.calories %></td>
-        <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @meals.each do |meal| %>
+  <div class="card-panel card-flex row">
+    <img class="col s3" src="<%= meal.thumbnail %>">
+    <div class="card-flex col s10">
+      <p class="meal-name"><%= meal.name %></p>
+      <p class="meal-qty"><%= meal.quantity %> <%= meal.units %></p>
+      <p class="meal-cals"><span class="text-bold teal-text"><%= meal.calories %></span> Calories</p>
+      <%= link_to meal, method: :delete, data: { confirm: 'Are you sure?'}, class: "waves-effect waves-light btn-floating red lighten-1" do %>
+        <i class="material-icons">remove</i>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
 <br>
 
-<h4>New Meal</h4>
-
-<%= render 'form', meal: Meal.new %>
+<div class="card new-meal-card">
+  <div class="card-content">
+    <%= render 'form', meal: Meal.new %>
+  </div>
+</div>
